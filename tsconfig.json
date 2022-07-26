@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
   "exclude": [
     "node_modules",
