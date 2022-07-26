@@ -14,7 +14,7 @@
     "build": "pnpm build:module && pnpm build:cjs",
     "build:cjs": "tsc --project tsconfig.cjs.json",
     "build:module": "tsc --project tsconfig.esm.json",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts)\"",
     "husky:install": "husky install",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "test": "jest --coverage",
