@@ -18,7 +18,6 @@
     "husky:install": "husky install",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "test": "jest --coverage",
-    "test:ci": "tap --coverage-report=lcov test/*.test.js && npm run typescript",
     "typescript": "tsd"
   },
   "repository": {
