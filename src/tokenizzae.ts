@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { NormalizerIt, TokenizerIt } = require('@nlpjs/lang-it');
 
 export function normalize(text: string): string {
