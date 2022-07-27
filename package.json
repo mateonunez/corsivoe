@@ -1,6 +1,6 @@
 {
   "name": "@mateonunez/corsivoe",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "Non essere boomer, parla anche tu in cörsivœ",
   "main": "./dist/cjs/corsivoe.js",
   "module": "./dist/esm/corsivoe.js",
