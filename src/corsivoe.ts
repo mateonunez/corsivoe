@@ -1,44 +1,35 @@
 import tokenizzae from './tokenizzae';
 
+export type PositionType = 'start' | 'middle' | 'end';
+
 const corsivoe = (text: string) => {
   if (!text) {
     throw new Error('text is required');
   }
 
   const tokens = tokenizzae(text);
-
-  const result = '';
+  const newTokens: Array<string> = [];
 
   for (const token of tokens) {
-    const chars: string[] = [];
     const [start, middle, end] = splitStringTwoEqualPartsAndCenter(token.length);
     const wovelsIndexes = [...token.matchAll(/[aeiou]/g)];
 
-    // find start wovels
-    const tokenInCorsivoe = wovelsIndexes.map((wovelIndex: any): any => {
-      const { index } = wovelIndex;
+    let newToken = token;
 
-      if (index <= start) {
-        chars[index] = token[index].replace(/[a]/g, 'ä');
-        chars[index] = token[index].replace(/[e]/g, 'ë');
-        chars[index] = token[index].replace(/[i]/g, 'ï');
-        chars[index] = token[index].replace(/[o]/g, 'ö');
-        chars[index] = token[index].replace(/[u]/g, 'ü');
-      } else if (index >= middle && index < end) {
-        chars[index] = token[index].replace(/[a]/g, 'à');
-        chars[index] = token[index].replace(/[e]/g, 'è');
-        chars[index] = token[index].replace(/[i]/g, 'ì');
-        chars[index] = token[index].replace(/[o]/g, 'ò');
-        chars[index] = token[index].replace(/[u]/g, 'ù');
-      } else {
-        chars[index] = token[index];
+    newToken = token.replace(/[aeiou]/g, (match: any, index: any) => {
+      if (wovelsIndexes.some(wovelIndex => wovelIndex.index === index)) {
+        const position = index <= start ? 'start' : index >= token.length - end ? 'end' : 'middle';
+
+        return convertWolvelsToCorsivo(match, position);
       }
 
-      return chars;
+      return match;
     });
+
+    newTokens.push(newToken);
   }
 
-  return 'cörsivœ';
+  return newTokens.join(' ');
 };
 
 const splitStringTwoEqualPartsAndCenter = (length: number) => {
@@ -48,8 +39,56 @@ const splitStringTwoEqualPartsAndCenter = (length: number) => {
   return [startEnd, middle, startEnd];
 };
 
-// 12
-// 3 6 3
+const convertWolvelsToCorsivo = (wovel: string, position: PositionType) => {
+  if (position === 'start') {
+    switch (wovel) {
+      case 'a':
+        return 'ä';
+      case 'e':
+        return 'ë';
+      case 'i':
+        return 'ï';
+      case 'o':
+        return 'ö';
+      case 'u':
+        return 'ü';
+    }
+  }
+
+  if (position === 'middle') {
+    switch (wovel) {
+      case 'a':
+        return 'â';
+      case 'e':
+        return 'ê';
+      case 'i':
+        return 'i';
+      case 'o':
+        return 'ô';
+      case 'u':
+        return 'û';
+      default:
+        return wovel;
+    }
+  }
+
+  if (position === 'end') {
+    switch (wovel) {
+      case 'a':
+        return 'à';
+      case 'e':
+        return 'è';
+      case 'i':
+        return 'ì';
+      case 'o':
+        return 'œ';
+      case 'u':
+        return 'ù';
+      default:
+        return wovel;
+    }
+  }
+};
 
 export { corsivoe };
 export default corsivoe;
