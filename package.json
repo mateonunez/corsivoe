@@ -18,6 +18,7 @@
     "husky:install": "husky install",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "test": "jest --coverage",
+    "test:watch": "jest --watchAll",
     "typescript": "tsd"
   },
   "repository": {
